@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [groupBy, setGroupBy] = useState("status"); // Default grouping
-  const [sortBy, setSortBy] = useState("priority"); // Default sorting
+  const [groupBy, setGroupBy] = useState(
+    localStorage.getItem("groupBy") || "status"
+  ); // Load from localStorage
+  const [sortBy, setSortBy] = useState(
+    localStorage.getItem("sortBy") || "priority"
+  ); // Load from localStorage
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -21,6 +25,12 @@ function App() {
     };
     fetchCards();
   }, []);
+
+  // Save the current grouping and sorting to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("groupBy", groupBy);
+    localStorage.setItem("sortBy", sortBy);
+  }, [groupBy, sortBy]);
 
   // Grouping function
   const groupCards = () => {
@@ -75,7 +85,7 @@ function App() {
       <div className="flex justify-evenly mt-4">
         <label className="font-semibold">
           Group By:
-          <select onChange={(e) => setGroupBy(e.target.value)}>
+          <select value={groupBy} onChange={(e) => setGroupBy(e.target.value)}>
             <option value="status">Status</option>
             <option value="user">User</option>
             <option value="priority">Priority</option>
@@ -84,7 +94,7 @@ function App() {
 
         <label className="font-semibold">
           Sort By:
-          <select onChange={(e) => setSortBy(e.target.value)}>
+          <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
             <option value="priority">Priority</option>
             <option value="title">Title</option>
           </select>
