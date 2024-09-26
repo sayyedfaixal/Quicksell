@@ -1,4 +1,13 @@
-const Card = ({ title, id, points, priority, tag, userId, status }) => {
+const Card = ({
+  title,
+  id,
+  points,
+  priority,
+  tag,
+  userId,
+  status,
+  userName,
+}) => {
   return (
     /**
      * {
@@ -18,7 +27,8 @@ const Card = ({ title, id, points, priority, tag, userId, status }) => {
         <div className="flex justify-between mt-2">
           <div className="text-sm text-gray-500 font-semibold">{id}</div>
           <div className="w-8 h-8 bg-gray-300 text-white flex items-center justify-center rounded-full">
-            u{userId.charAt(4)} {/* Display the first character of userId */}
+            {userName ? userName.charAt(0) : userId.charAt(4)}{" "}
+            {/* Display first character of userName or userId */}
           </div>
         </div>
         <div className="text-sm font-semibold">{title}</div>

@@ -1,83 +1,114 @@
 import "./index.css";
 import Card from "./Components/Card";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+
 function App() {
-  const TODO = "Todo";
-  const IN_PROGRESS = "In progress";
-  const BACKLOG = "Backlog";
   const [cards, setCards] = useState([]);
+  const [groupBy, setGroupBy] = useState("status"); // Default grouping
+  const [sortBy, setSortBy] = useState("priority"); // Default sorting
+
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCards = async () => {
       try {
         const response = await fetch(
           "https://api.quicksell.co/v1/internal/frontend-assignment"
         );
         const data = await response.json();
-        // console.log(data);
-        setCards(data.tickets); // Save tickets from the API response to state
+        setCards(data.tickets);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching cards:", error);
       }
     };
-
-    fetchData();
+    fetchCards();
   }, []);
-  console.log(cards);
-  /*
-  *Priority levels: (This values you will receive in the api)**
-  4 - Urgent
-  3 - High
-  2 - Medium
-  1 - Low
-  0 - No priority
-  */
-  // Status - todo, in progress, backlogs
-  const todo = cards.filter((card) => card.status === TODO);
-  const inProgress = cards.filter((card) => card.status === IN_PROGRESS);
-  const backlogs = cards.filter((card) => card.status === BACKLOG);
+
+  // Grouping function
+  const groupCards = () => {
+    return cards.reduce((groups, card) => {
+      let key;
+
+      switch (groupBy) {
+        case "user":
+          key = card.userId;
+          break;
+        case "priority":
+          key = card.priority;
+          break;
+        default:
+          key = card.status;
+      }
+
+      if (!groups[key]) {
+        groups[key] = [];
+      }
+      groups[key].push(card);
+      return groups;
+    }, {});
+  };
+
+  // Sorting function
+  const sortCards = (cardsToSort) => {
+    const sortedCards = [...cardsToSort];
+
+    sortedCards.sort((a, b) => {
+      switch (sortBy) {
+        case "priority":
+          return b.priority - a.priority; // Descending order
+        case "title":
+          return a.title.localeCompare(b.title); // Ascending order
+        default:
+          return 0; // No sorting
+      }
+    });
+
+    return sortedCards;
+  };
+
+  const groupedCards = groupCards();
 
   return (
-    <div className="flex divide-y">
-      <div className="flex-1">
-        <h1 className="text-4xl font-bold p-2 text-gray-500">Todo</h1>
-        {todo.map((card) => (
-          <Card
-            title={card.title}
-            id={card.id}
-            points={card.points}
-            tag={card.tag}
-            status={card.status}
-            userId={card.userId}
-            priority={card.priority}
-          />
-        ))}
+    <div>
+      <h1 className="text-2xl font-bold text-center">
+        QuickSell | Kanban Board
+      </h1>
+
+      <div className="flex justify-evenly mt-4">
+        <label className="font-semibold">
+          Group By:
+          <select onChange={(e) => setGroupBy(e.target.value)}>
+            <option value="status">Status</option>
+            <option value="user">User</option>
+            <option value="priority">Priority</option>
+          </select>
+        </label>
+
+        <label className="font-semibold">
+          Sort By:
+          <select onChange={(e) => setSortBy(e.target.value)}>
+            <option value="priority">Priority</option>
+            <option value="title">Title</option>
+          </select>
+        </label>
       </div>
-      <div className="flex-1">
-        <h1 className="text-4xl font-bold p-2 text-gray-500 ">In Progress</h1>
-        {inProgress.map((card) => (
-          <Card
-            title={card.title}
-            id={card.id}
-            points={card.points}
-            tag={card.tag}
-            status={card.status}
-            userId={card.userId}
-            priority={card.priority}
-          />
-        ))}
-      </div>
-      <div className="flex-1">
-        <h1 className="text-4xl font-bold p-2 text-gray-500">Backlogs</h1>
-        {backlogs.map((card) => (
-          <Card
-            title={card.title}
-            id={card.id}
-            points={card.points}
-            tag={card.tag}
-            status={card.status}
-            userId={card.userId}
-            priority={card.priority}
-          />
+
+      <div className="flex divide-y mt-4">
+        {Object.entries(groupedCards).map(([key, group]) => (
+          <div key={key} className="flex-1">
+            <h2 className="font-semibold ml-2">{key}</h2>
+            {sortCards(group).map((card) => (
+              <Card
+                key={card.id}
+                title={card.title}
+                id={card.id}
+                points={card.points}
+                tag={card.tag}
+                status={card.status}
+                userId={card.userId}
+                userName={card.userName}
+                priority={card.priority}
+              />
+            ))}
+          </div>
         ))}
       </div>
     </div>
