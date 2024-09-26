@@ -76,6 +76,14 @@ function App() {
       {/* Parent div with margin on left and right */}
       <nav className="bg-gray-800 p-4 flex justify-between items-center">
         <h1 className="text-white text-lg font-bold">QuickSell</h1>
+        <div>
+          <h2 className="text-white text-lg">
+            <span>
+              Grouping by {groupBy.toUpperCase()} | Sorting by{" "}
+              {sortBy.toUpperCase()}
+            </span>
+          </h2>
+        </div>
         <div className="relative inline-block text-left" ref={dropdownRef}>
           <button
             type="button"
@@ -121,7 +129,7 @@ function App() {
           )}
         </div>
       </nav>
-      <div className="flex divide-y mt-4">
+      <div className="flex mt-4">
         {Object.entries(groupedCards).map(([key, group]) => (
           <div key={key} className="flex-1">
             <h2 className="font-semibold ml-2">
