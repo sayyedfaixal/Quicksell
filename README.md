@@ -43,7 +43,7 @@ This Kanban Board application is built using React.js + Vite and allows users to
    npm run dev
    ```
 
-4. Open your browser and navigate to `http://localhost:3000`.
+4. Open your browser and navigate to `http://localhost:5173/`.
 
 ## Usage
 
