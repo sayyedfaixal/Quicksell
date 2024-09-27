@@ -47,8 +47,19 @@
 }
 
 .card-title {
+    /* Font Styling */
     font-size: 14px;
     font-weight: 500;
+
+    /* Overflow Handling */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis to indicate truncated content */
+
+    /* Multi-line Clamping */
+    display: -webkit-box; /* Enable WebKit-based flexible box layout */
+    -webkit-box-orient: vertical; /* Set the box layout orientation to vertical */
+    -webkit-line-clamp: 2; /* Limit the text to 2 lines */
+
 }
 
 /* Card Details */
