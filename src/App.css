@@ -1,0 +1,156 @@
+/* User Avatar */
+.user-avatar {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9ca3af;
+    color: #ffffff;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+/* Flex Utilities */
+.flex-container {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.flex-grow {
+    flex: 1 1 0%;
+}
+
+/* Spacing */
+.gap-small {
+    gap: 0.5rem;
+}
+
+.margin-right-small {
+    margin-right: 0.5rem;
+}
+
+.margin-left-small {
+    margin-left: 0.5rem;
+}
+
+.margin-top-medium {
+    margin-top: 1rem;
+}
+
+/* Navigation */
+.main-nav {
+    background-color: #1f2937;
+    padding: 1rem;
+}
+
+/* Buttons and Dropdowns */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+}
+
+.dropdown-button {
+    display: inline-flex;
+    align-items: center;
+    color: #94a3b8;
+    background-color: #ffffff;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.dropdown-button:hover {
+    background-color: #334155;
+    color: #ffffff;
+}
+
+.dropdown-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #60a5fa;
+}
+
+.dropdown-menu {
+    position: absolute;
+    margin-top: 1rem;
+    width: 13rem;
+    border-radius: 0.375rem;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+/* Form Elements */
+.form-select {
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+}
+
+.form-select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+}
+
+/* Typography */
+.text-small {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-medium {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.text-large {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.text-gray-700 {
+    color: #374151;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+/* Layout */
+.content-wrapper {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}

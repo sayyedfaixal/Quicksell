@@ -1,0 +1,93 @@
+/* General Styles */
+.card-container {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 8px;
+    /* background-color: #f3f4f6; */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.card-id {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    background-color: #d1d5db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.status-title-wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.status-icon {
+    display: flex;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Card Details */
+.card-details {
+    display: flex;
+    justify-content: start;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.card-points {
+    margin-right: 8px;
+}
+
+.priority-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+}
+
+.tag-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.tag-color {
+    width: 8px;
+    height: 8px;
+    background-color: #9ca3af;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.tag-text {
+    color: #6b7280;
+}
